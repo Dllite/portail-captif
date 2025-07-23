@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Mikrotik Hotspot Login page</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap theme -->
+    <link href="/css/bootstrap-theme.css" rel="stylesheet">
+</head>
+
+<body role="document">
+    <div class="container">
+        <div class="language-switcher" style="text-align:right; margin-top:20px;">
+            <button class="btn btn-primary btn-lang active" onclick="switchLanguage('fr')">Français</button>
+            <button class="btn btn-primary btn-lang" onclick="switchLanguage('en')">English</button>
+        </div>
+    </div>
+<script language="JavaScript">
+    <!--
+    function openLogin() {
+        if (window.name != 'hotspot_logout') return true;
+        open('$(link-login)', '_blank', '');
+        window.close();
+        return false;
+    }
+    //-->
+</script>
+
+
+<!-- Fixed navbar -->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">HotSpot Service</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="glyphicon glyphicon-flag"></i> Change Language <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="$(link-login-only)?target=%2F&amp;dst=$(link-orig-esc)">English</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="$(link-login-only)?target=lv&amp;dst=$(link-orig-esc)">Latvinski</a></li>
+                        <li><a href="$(link-login-only)?target=pl&amp;dst=$(link-orig-esc)">Polski</a></li>
+
+                    </ul>
+                </li>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</nav>
+
+<div class="container theme-showcase" role="main">
+
+    <div class="row"><br></div>
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="row">
+        $(if login-by == 'trial')
+        <br><h1 lang="en">Good bye trial user!</h1><h1 lang="fr" style="display:none">Au revoir utilisateur d'essai !</h1><br>
+        $(elif login-by != 'mac')
+        <br><h1 lang="en">Good bye $(username)!</h1><h1 lang="fr" style="display:none">Au revoir $(username) !</h1><br>
+        $(endif)
+    </div>
+    <div class="row">
+        <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title" lang="en">Your connection status</h3>
+                    <h3 class="panel-title" lang="fr" style="display:none">Statut de votre connexion</h3>
+                </div>
+                <div class="panel-body">
+                    <table class="table table-responsive table-bordered">
+                        <tbody>
+                        <tr><td align="right" lang="en">user name: <i class="glyphicon glyphicon-user"></td><td>$(username)</td></tr>
+                        <tr><td align="right" lang="fr" style="display:none">Nom d'utilisateur : <i class="glyphicon glyphicon-user"></td><td>$(username)</td></tr>
+                        <tr><td align="right" lang="en">IP address: <i class="glyphicon glyphicon-phone"></td><td>$(ip)</td></tr>
+                        <tr><td align="right" lang="fr" style="display:none">Adresse IP : <i class="glyphicon glyphicon-phone"></td><td>$(ip)</td></tr>
+                        <tr><td align="right" lang="en">MAC address: <i class="glyphicon glyphicon-cog"></td><td>$(mac)</td></tr>
+                        <tr><td align="right" lang="fr" style="display:none">Adresse MAC : <i class="glyphicon glyphicon-cog"></td><td>$(mac)</td></tr>
+                        <tr><td align="right" lang="en">session time: <i class="glyphicon glyphicon-time"></td><td>$(uptime)</td></tr>
+                        <tr><td align="right" lang="fr" style="display:none">Durée de session : <i class="glyphicon glyphicon-time"></td><td>$(uptime)</td></tr>
+                        $(if session-time-left)
+                        <tr><td align="right" lang="en">time left: <i class="glyphicon glyphicon-time"></td><td>$(session-time-left)</td></tr>
+                        <tr><td align="right" lang="fr" style="display:none">Temps restant : <i class="glyphicon glyphicon-time"></td><td>$(session-time-left)</td></tr>
+                        $(endif)
+                        <tr><td align="right" lang="en">used bytes up/down: <i class="glyphicon glyphicon-transfer"></td><td>$(bytes-in-nice) / $(bytes-out-nice)</td></tr>
+                        <tr><td align="right" lang="fr" style="display:none">octets envoyés/reçus : <i class="glyphicon glyphicon-transfer"></td><td>$(bytes-in-nice) / $(bytes-out-nice)</td></tr>
+                        </tbody>
+                    </table>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <form action="$(link-login)" name="login" onSubmit="return openLogin()">
+                                <input type="submit" value="take me back to login page" class="btn btn-primary btn-block" lang="en">
+                                <input type="submit" value="Retour à la page de connexion" class="btn btn-primary btn-block" lang="fr" style="display:none">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="well">
+        <div class="container">
+            <p class="text-muted" lang="en">Powered by Mikrotik.com & Wispcasts.com</p>
+            <p class="text-muted" lang="fr" style="display:none">Propulsé par Mikrotik.com & Wispcasts.com</p>
+        </div>
+    </footer>
+
+</div> <!-- /container -->
+
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="/js/jquery-1.12.2.min.js"></script>
+<script>window.jQuery || document.write('<script src="/js/jquery-1.12.2.min.js"><\/script>')</script>
+<script src="/js/bootstrap.min.js"></script>
+<script>
+    // Système de changement de langue inspiré de login.html
+    let currentLang = 'fr';
+    function switchLanguage(lang) {
+        currentLang = lang;
+        document.querySelectorAll('[lang]').forEach(el => {
+            el.style.display = 'none';
+        });
+        document.querySelectorAll('[lang="'+lang+'"]').forEach(el => {
+            el.style.display = '';
+        });
+        document.querySelectorAll('.btn-lang').forEach(btn => {
+            btn.classList.remove('active');
+            if (btn.textContent.toLowerCase().includes(lang === 'fr' ? 'français' : 'english')) {
+                btn.classList.add('active');
+            }
+        });
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+        switchLanguage('fr');
+    });
+</script>
+    <div class="contact">
+        <p lang="fr"><strong>Support client :</strong> +237 681 230 857 / +237 655 853 348</p>
+        <!-- <p lang="en" style="display:none"><strong>Customer support:</strong> +237 691 15 22 35</p> -->
+        <!-- <p lang="fr"><strong>Email :</strong> contact@wifi-zone.com</p> -->
+        <!-- <p lang="en" style="display:none"><strong>Email:</strong> contact@wifi-zone.com</p> -->
+    </div>
+
+    <div class="powered-by">
+        <p lang="fr">Powered by <span class="dllite">DL LITE LABS</span></p>
+        <p lang="en" style="display:none">Powered by <span class="dllite">DL LITE LABS</span></p>
+    </div>
+</body>
+</html>
