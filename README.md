@@ -7,3 +7,4 @@ If you would like to have nice login page for your hotspot user when using Mikro
 This project is compatible with Mikrotik routers: http://www.mikrotik.com
 
 # portail-captif
+# hotspot-mikrotik
