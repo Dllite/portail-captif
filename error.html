@@ -1,62 +1,262 @@
-<html>
+<!DOCTYPE html>
+<html lang="fr">
 <head>
-<title>mikrotik hotspot > error</title>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-<meta http-equiv="pragma" content="no-cache">
-<meta http-equiv="expires" content="-1">
-<style type="text/css">
-<!--
-textarea,input,select {
-	background-color: #FDFBFB;
-	border: 1px #BBBBBB solid;
-	padding: 2px;
-	margin: 1px;
-	font-size: 14px;
-	color: #808080;
-}
-
-body{ color: #737373; font-size: 12px; font-family: verdana; }
-
-a, a:link, a:visited, a:active { color: #AAAAAA; text-decoration: none; font-size: 12px; }
-a:hover { border-bottom: 1px dotted #c1c1c1; color: #AAAAAA; }
-img {border: none;}
-td { font-size: 12px; color: #7A7A7A; }
-
--->
-</style>
+    <title>Erreur - StarLink WiFi Zone</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="expires" content="-1">
+    <style>
+        :root {
+            --primary: #1e3a8a;
+            --secondary: #dc2626;
+            --light: #f8fafd;
+            --dark: #1f2937;
+            --accent: #f59e0b;
+            --success: #059669;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Arial, Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            color: #374151;
+        }
+        
+        .container {
+            max-width: 500px;
+            margin: 50px auto;
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            padding: 40px 30px;
+            text-align: center;
+        }
+        
+        .brand-header {
+            margin-bottom: 30px;
+        }
+        
+        .brand-name {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+        }
+        
+        .brand-tagline {
+            font-size: 16px;
+            color: #6b7280;
+            font-weight: 500;
+        }
+        
+        .error-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        .error-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 15px;
+        }
+        
+        .error-message {
+            font-size: 16px;
+            color: #6b7280;
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+        
+        .error-details {
+            background: #f8fafd;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 25px;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .error-details h3 {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        
+        .error-details p {
+            font-size: 14px;
+            color: #6b7280;
+            margin: 5px 0;
+        }
+        
+        .btn-retry {
+            display: inline-block;
+            background: var(--primary);
+            color: #fff;
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 10px;
+            font-weight: 600;
+            margin: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-retry:hover {
+            background: #1e40af;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(30, 58, 138, 0.3);
+        }
+        
+        .support-section {
+            background: linear-gradient(135deg, #f8fafd 0%, #e2e8f0 100%);
+            border-radius: 15px;
+            padding: 20px 15px;
+            margin: 25px 0 15px 0;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .support-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--primary);
+        }
+        
+        .support-phone {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 8px;
+        }
+        
+        .support-phone a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 700;
+        }
+        
+        .support-phone a:hover {
+            text-decoration: underline;
+        }
+        
+        .footer {
+            text-align: center;
+            font-size: 13px;
+            color: #6b7280;
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid #e5e7eb;
+        }
+        
+        .language-switcher {
+            text-align: right;
+            margin-bottom: 20px;
+        }
+        
+        .btn-lang {
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-left: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-lang:hover {
+            background: #1e40af;
+        }
+        
+        .btn-lang.active {
+            background: var(--secondary);
+        }
+        
+        @media (max-width: 600px) {
+            .container {
+                margin: 20px;
+                padding: 25px 20px;
+            }
+            
+            .brand-name {
+                font-size: 24px;
+            }
+            
+            .error-title {
+                font-size: 20px;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="container">
-        <div class="language-switcher" style="text-align:right; margin-top:20px;">
-            <button class="btn btn-primary btn-lang active" onclick="switchLanguage('fr')">Français</button>
-            <button class="btn btn-primary btn-lang" onclick="switchLanguage('en')">English</button>
+        <div class="language-switcher">
+            <button class="btn-lang active" onclick="switchLanguage('fr')">Français</button>
+            <button class="btn-lang" onclick="switchLanguage('en')">English</button>
+        </div>
+        
+        <div class="brand-header">
+            <div class="brand-name">StarLink WiFi Zone</div>
+            <div class="brand-tagline">Connexion Internet Haute Vitesse</div>
+        </div>
+        
+        <div class="error-icon">⚠️</div>
+        
+        <div class="error-title" lang="fr">Erreur de Connexion</div>
+        <div class="error-title" lang="en" style="display:none">Connection Error</div>
+        
+        <div class="error-message" lang="fr">
+            Une erreur s'est produite lors de votre tentative de connexion.
+        </div>
+        <div class="error-message" lang="en" style="display:none">
+            An error occurred during your connection attempt.
+        </div>
+        
+        <div class="error-details">
+            <h3 lang="fr">Détails de l'erreur</h3>
+            <h3 lang="en" style="display:none">Error Details</h3>
+            
+            <p lang="fr"><strong>Type d'erreur :</strong> $(error)</p>
+            <p lang="en" style="display:none"><strong>Error type:</strong> $(error)</p>
+            
+            <p lang="fr"><strong>Page de connexion :</strong></p>
+            <p lang="en" style="display:none"><strong>Login page:</strong></p>
+            
+            <a href="$(link-login)" class="btn-retry" lang="fr">Retour à la connexion</a>
+            <a href="$(link-login)" class="btn-retry" lang="en" style="display:none">Back to login</a>
+        </div>
+        
+        <div class="support-section">
+            <div class="support-title" lang="fr">Support Technique</div>
+            <div class="support-title" lang="en" style="display:none">Technical Support</div>
+            
+            <div class="support-phone">
+                <a href="tel:+237698250701">+237 698 250 701</a>
+            </div>
+            
+            <div style="font-size:13px; color:#6b7280; margin-top:6px;" lang="fr">
+                Assistance disponible 24h/24
+            </div>
+            <div style="font-size:13px; color:#6b7280; margin-top:6px;" lang="en" style="display:none">
+                24/7 Support Available
+            </div>
+        </div>
+        
+        <div class="footer">
+            <div style="margin-bottom:3px;">StarLink WiFi Zone</div>
+            <div>© 2025 - Service Internet Professionnel</div>
         </div>
     </div>
-<table width="100%" height="100%">
-<tr>
-<td align="center" valign="middle">
-                <span lang="en">Hotspot ERROR: $(error)</span>
-                <span lang="fr" style="display:none">ERREUR Hotspot : $(error)</span><br>
-<br>
-                <span lang="en">Login page: <a href="$(link-login)">$(link-login)</a></span>
-                <span lang="fr" style="display:none">Page de connexion : <a href="$(link-login)">$(link-login)</a></span>
-</td>
-</tr>
-</table>
-    <div class="contact">
-        <p lang="fr"><strong>Support client :</strong> +237 681 230 857 / +237 655 853 348</p>
-        <!-- <p lang="en" style="display:none"><strong>Customer support:</strong> +237 691 15 22 35</p> -->
-        <!-- <p lang="fr"><strong>Email :</strong> contact@wifi-zone.com</p> -->
-        <!-- <p lang="en" style="display:none"><strong>Email:</strong> contact@wifi-zone.com</p> -->
-    </div>
-
-    <div class="powered-by">
-        <p lang="fr">Powered by <span class="dllite">DL LITE LABS</span></p>
-        <p lang="en" style="display:none">Powered by <span class="dllite">DL LITE LABS</span></p>
-    </div>
+    
     <script>
-        // Système de changement de langue inspiré de login.html
         let currentLang = 'fr';
+        
         function switchLanguage(lang) {
             currentLang = lang;
             document.querySelectorAll('[lang]').forEach(el => {
@@ -67,11 +267,10 @@ td { font-size: 12px; color: #7A7A7A; }
             });
             document.querySelectorAll('.btn-lang').forEach(btn => {
                 btn.classList.remove('active');
-                if (btn.textContent.toLowerCase().includes(lang === 'fr' ? 'français' : 'english')) {
-                    btn.classList.add('active');
-                }
             });
+            event.target.classList.add('active');
         }
+        
         document.addEventListener('DOMContentLoaded', function() {
             switchLanguage('fr');
         });
